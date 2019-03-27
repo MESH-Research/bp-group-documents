@@ -53,7 +53,11 @@ function bp_group_documents_record_delete($document) {
     $params = array('action' => sprintf(__('%s deleted the file: %s from %s', 'bp-group-documents'), bp_core_get_userlink($bp->loggedin_user->id), $document->name, '<a href="' . bp_get_group_permalink($bp->groups->current_group) . '">' . esc_attr($bp->groups->current_group->name) . '</a>'),
         'component_action' => 'deleted_group_document',
         'secondary_item_id' => $document->id);
-    bp_group_documents_record_activity($params);
+
+    if( !isset($_REQUEST['action']) && 'delete' !== $_REQUEST['action'] ) {
+        bp_group_documents_record_activity($params);
+    }
+
     do_action('bp_group_documents_record_delete', $document);
 }
 
