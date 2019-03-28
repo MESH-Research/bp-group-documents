@@ -157,7 +157,7 @@ function bp_group_documents_display_content() {
 					if ( $document->current_user_can( 'delete' ) ) {
 					    $delete_link = wp_nonce_url( $template->action_link . 'delete/' . $document->id, 'group-documents-delete-link' );
 					    echo "<a href='$delete_link' class='bp-group-documents-delete' data-doc-id=".$document->id.">" . __( 'Delete', 'bp-group-documents' ) . "</a>";
-					    echo "<br><input id='group-files-minor-edit' name='group-files-minor-edit' data-doc-id=".$document->id." type='checkbox' value='on' /> Check to prevent notifications to group members.";
+					    echo "<br><input class='group-files-minor-edit' name='group-files-minor-edit' data-doc-id=".$document->id." type='checkbox' value='on' /> Check to prevent notifications to group members.";
 					}
 					echo '</div>';
 
