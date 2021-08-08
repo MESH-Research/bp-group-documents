@@ -1,8 +1,9 @@
 <?php
 
 // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
     exit;
+}
 
 add_filter( 'bp_group_documents_name_out', 'htmlspecialchars' );
 add_filter( 'bp_group_documents_description_out', 'stripslashes' );
@@ -125,7 +126,9 @@ function cac_catch_group_doc_request() {
 
 		header( 'Content-Disposition: inline; filename="' . $file_deets[1] . '"' );
 		header( "Content-Transfer-Encoding: binary" );
-		ob_clean();
+		while (ob_get_level() > 0) {
+		    ob_end_clean();
+			}
 		flush();
 		readfile( $doc_path );
 		die();
@@ -149,6 +152,11 @@ add_filter( 'wp', 'cac_catch_group_doc_request', 1 );
 // http://www.php.net/manual/en/function.mime-content-type.php#87856
 if ( ! function_exists( 'mime_content_type' ) ) {
 
+    /**
+     *
+     * @param string $filename
+     * @return string
+     */
     function mime_content_type( $filename ) {
 	$mime_types = array(
 	    'txt' => 'text/plain',

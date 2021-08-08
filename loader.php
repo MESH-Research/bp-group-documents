@@ -1,28 +1,28 @@
 <?php
-
-/*
-  Plugin Name: BP Group Documents
-  Plugin URI: wordpress.org/plugins/bp-group-documents/
-
-  Description: BP Group Documents creates a page within each BuddyPress group to upload and any type of file or document.
-  Version: 1.9.4
-  Revision Date: June 5, 2015
-  Requires at least: WP 3.5, BuddyPress 1.7
-  Tested up to: 4.2.2, BuddyPress 2.2
-  License:  GNU General Public License 3.0 or newer (GPL) http://www.gnu.org/licenses/gpl.html
-  Author: <a href="http://lenasterg.wordpress.com">lenasterg</a>, since v. 0.4.3.3. with additional bug fixing and improvements by <a href="http://keeblesmith.com">Keeble Smith</a>. Original plugin author Peter Anselmo, Studio66.
- Text Domain: bp-group-documents
- Domain Path: /languages/
-  Network Only: true
- * @todo minor, make a deregister function, 26/4/2013 stergatu
- */
-
+/**
+* Plugin Name: BP Group Documents
+* Plugin URI: wordpress.org/plugins/bp-group-documents/
+* Description: BP Group Documents creates a page within each BuddyPress group to upload and any type of file or document.
+* Version: 1.12.3
+* Revision Date: April 9, 2019
+* Requires at least: WP 4.6, BuddyPress 1.7
+* Tested up to: 5.1, BuddyPress 4.2.0
+* License:  GNU General Public License 3.0 or newer (GPL) http://www.gnu.org/licenses/gpl.html
+* Author: lenasterg
+* Text Domain: bp-group-documents
+* Domain Path: /languages/
+* Network Only: true
+* @todo minor, make a deregister function, 26/4/2013 stergatu
+*/
+ 
+// Exit if accessed directly
+defined( 'ABSPATH' ) || exit;
 
 /* Only load code that needs BuddyPress to run once BP is loaded and initialized. */
 
 //some constants that can be checked when extending this plugin
 define( 'BP_GROUP_DOCUMENTS_IS_INSTALLED', 1 );
-define( 'BP_GROUP_DOCUMENTS_VERSION', '1.9.4' );
+define( 'BP_GROUP_DOCUMENTS_VERSION', '1.12.3' );
 define( 'BP_GROUP_DOCUMENTS_DB_VERSION', '5' );
 define( 'BP_GROUP_DOCUMENTS_VALID_FILE_FORMATS', 'odt,ods,rtf,txt,doc,docx,xls,xlsx,ppt,pps,pptx,ppsx,pdf,jpg,jpeg,gif,png,zip,tar,gz' );
 define( 'BP_GROUP_DOCUMENTS_ITEMS_PER_PAGE', 20 );
@@ -46,10 +46,12 @@ if ( ! defined( 'BP_GROUP_DOCUMENTS_SLUG' ) ) {
  * @since 0.5
  */
 function bp_group_documents_dir() {
-    if ( stristr( __FILE__, '/' ) )
+    if ( stristr( __FILE__, '/' ) ) {
 	$bp_gr_dir = explode( '/plugins/', dirname( __FILE__ ) );
-    else
+    }
+    else {
 	$bp_gr_dir = explode( '\\plugins\\', dirname( __FILE__ ) );
+    }
     return str_replace( '\\', '/', end( $bp_gr_dir ) ); //takes care of MS slashes
 }
 
@@ -179,28 +181,31 @@ function bp_group_documents_tableCreate( $charset_collate ) {
  */
 function bp_group_documents_set_constants() {
     global $wpdb;
-    if ( ! defined( 'BP_GROUP_DOCUMENTS_TABLE' ) )
+    if ( ! defined( 'BP_GROUP_DOCUMENTS_TABLE' ) ) {
 	define( 'BP_GROUP_DOCUMENTS_TABLE', $wpdb->base_prefix . 'bp_group_documents' );
-
-
+    }
 
     //Widgets can be set to only show documents in certain (site-admin specified) groups
-    if ( ! defined( 'BP_GROUP_DOCUMENTS_WIDGET_GROUP_FILTER' ) )
+    if ( ! defined( 'BP_GROUP_DOCUMENTS_WIDGET_GROUP_FILTER' ) ) {
 	define( 'BP_GROUP_DOCUMENTS_WIDGET_GROUP_FILTER', true );
+    }
 
     //if enabled, documents can be flagged as "featured"
     //widget will have an option to only show featured docs
-    if ( ! defined( 'BP_GROUP_DOCUMENTS_FEATURED' ) )
+    if ( ! defined( 'BP_GROUP_DOCUMENTS_FEATURED' ) ) {
 	define( 'BP_GROUP_DOCUMENTS_FEATURED', true );
+    }
 
     //longer text descriptions to go with the documents can be toggled on or off.
     //this will toggle both the textarea input, and the display;
-    if ( ! defined( 'BP_GROUP_DOCUMENTS_SHOW_DESCRIPTIONS' ) )
+    if ( ! defined( 'BP_GROUP_DOCUMENTS_SHOW_DESCRIPTIONS' ) ) {
 	define( 'BP_GROUP_DOCUMENTS_SHOW_DESCRIPTIONS', true );
+    }
 
     //if enabled, and wp_editor exists, it will be used for the document comment editor
-    if ( ! defined( 'BP_GROUP_DOCUMENTS_ALLOW_WP_EDITOR' ) )
+    if ( ! defined( 'BP_GROUP_DOCUMENTS_ALLOW_WP_EDITOR' ) ) {
 	define( 'BP_GROUP_DOCUMENTS_ALLOW_WP_EDITOR', false );
+    }
 
     switch ( substr( BP_VERSION, 0, 3 ) ) {
 	case '1.1':

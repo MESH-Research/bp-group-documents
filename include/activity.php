@@ -1,7 +1,8 @@
 <?php
 // Exit if accessed directly
-if (!defined('ABSPATH'))
+if (!defined('ABSPATH')) {
     exit;
+}
 
 /**
  * bp_group_documents_record_add()
@@ -53,11 +54,7 @@ function bp_group_documents_record_delete($document) {
     $params = array('action' => sprintf(__('%s deleted the file: %s from %s', 'bp-group-documents'), bp_core_get_userlink($bp->loggedin_user->id), $document->name, '<a href="' . bp_get_group_permalink($bp->groups->current_group) . '">' . esc_attr($bp->groups->current_group->name) . '</a>'),
         'component_action' => 'deleted_group_document',
         'secondary_item_id' => $document->id);
-
-    if( !isset($_REQUEST['action']) && 'delete' !== $_REQUEST['action'] ) {
-        bp_group_documents_record_activity($params);
-    }
-
+    bp_group_documents_record_activity($params);
     do_action('bp_group_documents_record_delete', $document);
 }
 
@@ -72,10 +69,10 @@ add_action('bp_group_documents_delete_success', 'bp_group_documents_record_delet
 function bp_group_documents_record_activity($args = '') {
     $bp = buddypress();
 
-    if (!function_exists('bp_activity_add'))
+    if (!function_exists('bp_activity_add')) {
         return false;
-
-
+		}
+	 
     $defaults = array(
         'primary_link' => bp_get_group_permalink($bp->groups->current_group),
         'component_name' => 'groups',
@@ -84,6 +81,7 @@ function bp_group_documents_record_activity($args = '') {
         'user_id' => $bp->loggedin_user->id, // Optional
         'item_id' => $bp->groups->current_group->id, // Optional
         'secondary_item_id' => false, // Optional
+		'content'=>null //Optional
     );
 
     $r = wp_parse_args($args, $defaults);

@@ -1,9 +1,9 @@
 ===BP Group Documents  ===
 Contributors: lenasterg, NTS on cti.gr
 Tags: wpms, buddypress, group, document, plugin, file, media, storage, upload, widget
-Requires at least: WP 3.5, BuddyPress 1.7
-Tested up to: 4.2.2 BuddyPress 2.2
-Stable tag: 1.9.4 (Requires at least: WP 3.5, BuddyPress 1.7)
+Requires at least: 4.6
+Tested up to: 5.1
+Stable tag: 1.12.3
 License: GNU General Public License 3.0 or newer (GPL) http://www.gnu.org/licenses/gpl.html
 
 
@@ -23,9 +23,9 @@ For private networks, see the FAQ "I have a members only network. How to disable
 
 4 Widgets: "User's groups documents", "Recent Uploads" , "Popular Downloads", can be used to show activity at a glance. If the theme support different sidebars for group pages, the  BP_Group_Documents_CurrentGroup_Widget can be used to show current group's documents.
 
-Contributions by Lena Stergatu for WP 3.3, with additional bug fixes and improvements by Keeble Smith (http://keeblesmith.com) and Anton Andreasson work for BP 1.7.
+Contributions by Lena Stergatou, with additional bug fixes and improvements by Keeble Smith (http://keeblesmith.com) and Anton Andreasson work for BP 1.7.
 
-Original plugin is <a href="http://wordpress.org/extend/plugins/buddypress-group-documents/">no longer supported</a> so revised. Original plugin author Peter Anselmo.
+Original plugin author was Peter Anselmo.
 
 PLEASE: If you have any issues or it doesn't work for you, please report in support forum.  It doesn't help anyone to mark "broken" without asking around.  Thanks!
 
@@ -88,15 +88,51 @@ add_filter( 'bp_group_documents_download_access', 'bp_only_logged_in_can_downloa
 
 
 == Changelog ==
-= Version 1.9.4 (5/6/2015)=
+
+= Version 1.12.3 (9/4/2019) =
+* Fix some PHP 7.x warnings
+* Fix BuddyPress warning, thanks to @venutius 
+* Fix a css issue reported in wordpress.org support forum
+
+= Version 1.12.2 (29/06/2018) =
+* Replace constant WP_PLUGIN_URL with plugins_url() 
+* Replace constant WP_CONTENT_URL with content_url()
+* Fix some deprecated warnings
+
+= Version 1.12.1 (6/10/2017) =
+* Typo fix for template folder
+
+= Version 1.12 (2/10/2017) =
+* Allow main plugin markup to be overridden with theme template. Props @boonebgorges
+
+= Version 1.11 (29/3/2017) =
+* Security fixes
+* Introduce new action: 'bp_group_documents_data_failed_save'
+
+= Version 1.10 (24/3/2017) =
+* Fix bug caused from 1.9.7 version
+* Security fixes
+
+= Version 1.9.7 (15/3/2017) =
+* New feature: Display an "Add new" button on top of the documents list when the documents are more than 4.
+* Fix bug on download docx, xlsx
+* Fix bug on delete document's category
+
+= Version 1.9.6 (15/3/2017) =
+* Fix typos in group documents admin page
+
+= Version 1.9.5 (14/3/2017) =
+* Fix some error notices in widgets
+
+= Version 1.9.4 (5/6/2015) =
 * Fix for widgets, pros @thebrandonallen
 * Add icon for ppsx
 * Fix for Strict Standards setup
 
-= Version 1.9.3.1 (21/4/2015)=
+= Version 1.9.3.1 (21/4/2015) =
 * Minor fix
 
-= Version 1.9.3 (6/4/2015)=
+= Version 1.9.3 (6/4/2015) =
 * Fix BP_Group_Documents_CurrentGroup_Widget for hidden groups
 * Updated Italian language file, thanks to Daniele Mezzetti
 

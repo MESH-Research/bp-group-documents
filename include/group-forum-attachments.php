@@ -1,8 +1,8 @@
 <?php
 // Exit if accessed directly
-if (!defined('ABSPATH'))
+if (!defined('ABSPATH')) {
     exit;
-
+}
 // Add group document uploading to new forum posts
 add_action('bp_after_group_forum_post_new', 'bp_group_documents_forum_attachments_upload_attachment');
 add_action('groups_forum_new_reply_after', 'bp_group_documents_forum_attachments_upload_attachment');
@@ -63,7 +63,11 @@ function bp_group_documents_forum_attachments_topic_text($topic_text) {
     return $topic_text;
 }
 
-/* Returns html that links to a group document
+
+/**
+ * Returns html that links to a group document
+ * @param type $document
+ * @return type
  */
 function bp_group_documents_forum_attachments_document_link($document) {
     $html = "<br /><a class='group-documents-title' id='group-document-link-{$document->id}' href='{$document->get_url()}' target='_blank'>{$document->name}";
