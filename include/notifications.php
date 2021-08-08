@@ -59,7 +59,7 @@ function bp_group_documents_email_notification( $document ) {
     $document_link = $document->get_url() ;
 
 
-    $subject = '[' . get_blog_option( 1 , 'blogname' ) . '] ' . sprintf( __( 'A document was uploaded to %s' , 'bp-group-documents' ) , $bp->groups->current_group->name ) ;
+    $subject = '[' . get_blog_option( BP_ROOT_BLOG , 'blogname' ) . '] ' . sprintf( __( 'A document was uploaded to %s' , 'bp-group-documents' ) , $bp->groups->current_group->name ) ;
 
     //these will be all the emails getting the update
     //'user_id' => 'user_email
