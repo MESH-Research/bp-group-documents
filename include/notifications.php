@@ -49,7 +49,6 @@ add_action( 'groups_screen_notification_settings' , 'bp_group_documents_screen_n
  */
 function bp_group_documents_email_notification( $document ) {
     $bp = buddypress();
-    ;
 
     $user_name = bp_core_get_userlink( $bp->loggedin_user->id , true ) ;
     $user_profile_link = bp_core_get_userlink( $bp->loggedin_user->id , false , true ) ;
